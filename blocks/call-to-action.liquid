@@ -1,0 +1,59 @@
+
+
+<div class="call-to-action-block">
+  {{ block.settings.call_to_action_block }}
+
+  <div class="call-to-action-block__header">{{ block.settings.header_text }}</div>
+  {%- if block.settings.discounted_tick -%}
+    <div class="call-to-action-block__discount">{{ block.settings.discount_text }}</div>
+  {%- endif -%}
+  <div class="call-to-action-block__price">{{ block.settings.price }} </div>
+  <div class="call-to-action-block__button"><a href="{{ block.settings.button_link }}">{{ block.settings.button_name }} </a></div>
+</div>
+
+{% schema %}
+{
+  "name": "Call to action",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "header_text",
+      "label": "Header Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "discounted_tick",
+      "label": "Discount",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "discount_text",
+      "label": "Discount Text"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$0.00"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_name",
+      "label": "Button Name",
+      "default": "Order Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.call_to_action_block",
+      "category": "t:categories.layout"
+    }
+  ]
+}
+{% endschema %}
