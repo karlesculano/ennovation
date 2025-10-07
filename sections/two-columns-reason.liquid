@@ -1,0 +1,86 @@
+
+
+<div class="two-column-reason-section-wrap">
+    <div class="two-column-reason-section-wrap__header">
+        <h2>{{ section.settings.section_header }}</h2>
+    </div>
+
+    {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+            {%- when 'block' -%}
+                <div class="two-column-reason-section-wrap__container">
+                    <div class="two-column-reason-section-wrap__col">
+                        <div class="header3"><h3>{{ block.settings.title }}</h3></div>
+                        {%- assign image = block.settings.image -%}
+                        {{ image | image_url: width: image.width | image_tag: class: 'image_class', loading: 'lazy' }}
+                    </div>
+                    <div class="two-column-reason-section-wrap__col content">
+                        {{ block.settings.content }}
+                        <hr>
+                        {%- if block.settings.show -%}
+                            <div class="extend-content">{{ block.settings.extended_content }}</div>
+                        {%- endif -%}
+                    </div>
+                </div>
+        {%- endcase -%}
+    {%- endfor -%}
+</div>
+
+
+{% schema %}
+{
+  "name": "Section Reason",
+  "settings": [
+        {
+          "type": "text",
+          "id": "section_header",
+          "label": "Header Title",
+          "default": "5 Reasons You’ll Love the DryQ"
+        }
+    ],
+    "blocks": [
+        {
+        "name": "Block",
+        "type": "block",
+        "settings": [
+            {
+            "type": "image_picker",
+            "id": "image",
+            "label": "image"
+            },
+            {
+            "type": "text",
+            "id": "title",
+            "label": "title",
+            "default": "Title"
+            },
+            {
+            "type": "richtext",
+            "id": "content",
+            "label": "content"
+            },
+            {
+            "type": "checkbox",
+            "id": "show",
+            "label": "show",
+            "default": false,
+            "info": "Add extended content"
+            },
+            {
+            "type": "richtext",
+            "id": "extended_content",
+            "label": "Extended Content"
+            }
+
+        ]
+        }
+    ],
+    "presets": [
+    {
+      "name": "t:names.section_reason",
+      "category": "t:categories.layout"
+    }
+  ]
+}
+{% endschema %}

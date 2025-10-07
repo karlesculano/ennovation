@@ -1,0 +1,228 @@
+<div class="about-product-section">
+    <div class="about-product-section__container-about">
+      <div class="about-product-section__col">
+        <div class="about-product-section__container-about-header">
+          <h3>{{ section.settings.header }}</h3>
+          {%- assign seal_image = section.settings.seal_image -%}
+          {{ seal_image | image_url: width: seal_image.width | image_tag: class: 'add_your_class_here', loading: 'lazy' }}
+        </div>
+        <div class="about-product-section__container-about-desc">{{ section.settings.short_description }}</div>
+        <ul class="about-product-section__container-about-list">
+          {% for i in (1..6) %}
+            {% assign list = "list_" | append: forloop.index %}
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12" fill="none">
+                <path d="M13.5807 1.76562L4.41406 10.9415L1.66406 8.19146" stroke="#B87664" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ section.settings[list] }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="about-product-section__col about-product-section__gallery">
+
+        <div class="slider-container">
+        <ul id="vertical" class="slider">
+          {% for i in (1..5) %}
+            {% assign gallery = "gallery_" | append: forloop.index %}
+          <li data-thumb="{{ section.settings[gallery] | img_url }}">
+            {{ section.settings[gallery] | image_url: width: section.settings[gallery].width | image_tag: class: 'add_your_class_here', loading: 'lazy' }}
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+     </div>
+    <div class="about-product-section__container-info">
+      <div class="about-product-section__col">
+        <div class="call-to-action-block">
+          {{ section.settings.call_to_action_block }}
+
+          <div class="call-to-action-block__header">{{ section.settings.header_text }}</div>
+          {%- if section.settings.discounted_tick -%}
+            <div class="call-to-action-block__discount">{{ section.settings.discount_text }}</div>
+          {%- endif -%}
+          <div class="call-to-action-block__price">{{ section.settings.price }} </div>
+          <div class="call-to-action-block__button"><a href="{{ section.settings.button_link }}">{{ section.settings.button_name }} </a></div>
+        </div>
+      </div>
+      <div class="about-product-section__col">
+        <ul class="about-product-section__container-info-list">
+          {% for i in (1..5) %}
+            {% assign checklist = "check_list_" | append: forloop.index %}
+            {% assign checklistimg = "check_list_image_" | append: forloop.index %}
+            <li>
+              {{ section.settings[checklistimg] | image_url: width: section.settings[gallery].width | image_tag: class: 'add_your_class_here', loading: 'lazy' }}
+              <span>{{ section.settings[checklist] }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+</div>
+ 
+{% schema %}
+  {
+  "name": "About Product Info",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header"
+    },
+    {
+      "type": "image_picker",
+      "id": "seal_image",
+      "label": "Seal Image"
+    },
+    {
+      "type": "richtext",
+      "id": "short_description",
+      "label": "Short Description"
+    },
+    {
+      "type": "text",
+      "id": "list_1",
+      "label": "List 1"
+    },
+    {
+      "type": "text",
+      "id": "list_2",
+      "label": "List 2"
+    },
+    {
+      "type": "text",
+      "id": "list_3",
+      "label": "List 3"
+    },
+    {
+      "type": "text",
+      "id": "list_4",
+      "label": "List 4"
+    },
+    {
+      "type": "text",
+      "id": "list_5",
+      "label": "List 5"
+    },
+    {
+      "type": "text",
+      "id": "list_6",
+      "label": "List 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "gallery_1",
+      "label": "Gallery 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "gallery_2",
+      "label": "Gallery 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "gallery_3",
+      "label": "Gallery 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "gallery_4",
+      "label": "Gallery 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "gallery_5",
+      "label": "Gallery 5"
+    },
+    {
+      "type": "text",
+      "id": "check_list_1",
+      "label": "Check List 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "check_list_image_1",
+      "label": "Check List Image 1"
+    },
+    {
+      "type": "text",
+      "id": "check_list_2",
+      "label": "Check List 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "check_list_image_2",
+      "label": "Check List Image 2"
+    },
+    {
+      "type": "text",
+      "id": "check_list_3",
+      "label": "Check List 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "check_list_image_3",
+      "label": "Check List Image 3"
+    },
+    {
+      "type": "text",
+      "id": "check_list_4",
+      "label": "Check List 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "check_list_image_4",
+      "label": "Check List Image 4"
+    },
+    {
+      "type": "text",
+      "id": "check_list_5",
+      "label": "Check List 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "check_list_image_5",
+      "label": "Check List Image 5"
+    },
+    {
+      "type": "richtext",
+      "id": "header_text",
+      "label": "Header Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "discounted_tick",
+      "label": "Discount",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "discount_text",
+      "label": "Discount Text"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$0.00"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_name",
+      "label": "Button Name",
+      "default": "Order Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Product Info"
+    }
+  ]
+}  
+{% endschema %}

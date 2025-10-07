@@ -1,0 +1,75 @@
+<div class="customers-section">
+    <div class="customers-section__container">
+        <h3>{{ section.settings.header }} </h3>
+    </div>
+    <div class="customers-section__container">
+        <div class="customers-section__container-gallery">
+        {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+            {%- when 'images' -%}
+            {%- ########################################################################## 
+            # Label: Image Picker 0
+            # Returns: an image object or nil(if no selection has been made)
+            # Image Properties: https://shopify.dev/api/liquid/objects#image
+            # Image Filters: https://shopify.dev/api/liquid/filters#image_tag, https://shopify.dev/api/liquid/filters#image_url
+            ########################################################################## -%}
+            {%- assign image_picker_0 = block.settings.image_picker_0 -%}
+            {{ image_picker_0 | image_url: width: image_picker_0.width | image_tag: class: 'add_your_class_here', loading: 'lazy' }}
+
+        {%- endcase -%}
+        {%- endfor -%}
+        </div>
+    </div>
+    <div class="customers-section__container">
+        <div class="customers-section__box customers-section__box--box-1">{{ section.settings.box_1_content }} </div>
+        <div class="customers-section__box customers-section__box--box-2">{{ section.settings.box_2_content }} </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Customers Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header"
+    },
+    {
+      "type": "richtext",
+      "id": "box_1_content",
+      "label": "Box 1 Content"
+    },
+    {
+      "type": "richtext",
+      "id": "box_2_content",
+      "label": "Box 2 Content"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Images",
+      "type": "images",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Image Picker 0",
+          "id": "image_picker_0"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customers Section"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

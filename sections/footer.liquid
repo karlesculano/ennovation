@@ -1,0 +1,97 @@
+<div class="footer-container">
+  <div class="footer-container__wrapper">
+    <div class="footer-container__col">
+      {%- assign footer_logo = section.settings.footer_logo -%}
+      {{ footer_logo | image_url: width: footer_logo.width | image_tag: class: 'footer-logo', loading: 'lazy' }}
+    </div>
+    <div class="footer-container__col">
+      {%- assign menu = section.settings.menu.links -%}
+      <input type="checkbox" id="menu-check" class="footer-menu-hide" />
+      <div class="footer-menu__header footer-menu__header--menu"><label for="menu-check">Menu</label></div>
+      <ul class="footer-menu">
+      {%- for link in menu -%}
+        <li>{{ link.title | link_to: link.url }}</li>
+      {%- endfor -%}
+      </ul>
+    </div>
+    <div class="footer-container__col">
+      <div class="footer-menu__header">FOLLOW US</div>
+      <ul class="social-media-menu">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+          {%- when 'social_media' -%}
+            <li>
+              <a href="{{ block.settings.link }} ">
+                {%- assign icon_logo = block.settings.icon_logo -%}
+                {{ icon_logo | image_url: width: icon_logo.width | image_tag: class: 'add_your_class_here', loading: 'lazy' }}
+              </a>
+            </li>
+        {%- endcase -%}
+      {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+  <div class="footer-container__bottom-foot">
+    <div class="footer-container__bottom-foot-wrap">
+      <div class="footer-container__bottom-foot-col">
+        Skin Research Institute. {{ 'now' | date: "%Y" }} All rights reserved.
+      </div>
+      <div class="footer-container__bottom-foot-col">
+        {%- assign menu_bottom = section.settings.menu_bottom.links -%}
+        <ul class="footend-menu">
+          {%- for link in menu_bottom -%}
+            <li>{{ link.title | link_to: link.url }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:names.footer",
+  "class": "section-wrapper",
+  "tag": "footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_bottom",
+      "label": "Footend Menu"
+    },
+  ],
+  "blocks": [
+    {
+      "name": "Social Media",
+      "type": "social_media",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_logo",
+          "label": "Icon Logo"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+  ],
+}
+{% endschema %}

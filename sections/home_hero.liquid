@@ -1,0 +1,88 @@
+
+{%- assign background_image = section.settings.background_image -%}
+<div class="homepage-hero">
+    <div class="homepage-hero__bg">{{ background_image | image_url: width: background_image.width | image_tag: class: 'bg_img', loading: 'lazy' }}</div>
+    <div class="homepage-hero__content">
+        <h2 class="homepage-hero__hero-header">{{ section.settings.header }}</h2>
+        <div class="homepage-hero__hero-subheader">{{ section.settings.sub_header }}</div> 
+        <div class="homepage-hero__orderbtn"><a href="{{ section.settings.order_url }}">{{ section.settings.button_text }}</a></div>
+        <div class="homepage-hero__paypalbtn"><a href="{{ section.settings.paypal_url }}"><span>Pay with</span> <img src="https://i.postimg.cc/1XDk8Cn0/paypal.png" width="100" height="" /></a></div>
+        <div class="homepage-hero__subtext"><span>{{ section.settings.sub_text }}</span> <img src="https://i.postimg.cc/Hsx0sJqy/afterpay.png" width="100" height="" /></div>
+        <hr />
+        <div data-date-id="{{ section.settings.countdown_date }}"class="homepage-hero__countdown-header">{{ section.settings.countdown_header }} </div>
+        <div class="homepage-hero__countdown-time" id="timer">
+            <div id="days"></div>
+            <div id="hours"></div>
+            <div id="minutes"></div>
+            <div id="seconds"></div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Homepage Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header",
+      "default": "AWESOME!"
+    },
+    {
+      "type": "richtext",
+      "id": "sub_header",
+      "label": "Sub Header"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Order Now"
+    },
+    {
+      "type": "url",
+      "id": "order_url",
+      "label": "Order Url"
+    },
+    {
+      "type": "url",
+      "id": "paypal_url",
+      "label": "Paypal Url"
+    },
+    {
+      "type": "richtext",
+      "id": "sub_text",
+      "label": "Sub text"
+    },
+    {
+      "type": "text",
+      "id": "countdown_header",
+      "label": "Countdown Header"
+    },
+    {
+      "type": "text",
+      "id": "countdown_date",
+      "label": "Countdown Date",
+      "placeholder": "23 Oct 2025 7:00:00",
+      "info": "Make sure to follow proper date format and time (23 Oct 2025 7:00:00)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Hero"
+    }
+  ]
+}  
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
